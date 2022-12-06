@@ -73,7 +73,7 @@ images.forEach((image, i) => {
    //create caption
    const carouselItemTitle = createEle('h2','',[image.title]);
    const carouselItemDesc = createEle('p','',[image.text]);
-   const carouselCaption = createEle('div', 'caption position-absolute bottom-0 text-white text-end p-3', [carouselItemTitle, carouselItemDesc]);
+   const carouselCaption = createEle('div', 'caption position-absolute w-100 bottom-0 text-white text-end p-3', [carouselItemTitle, carouselItemDesc]);
 
    const carouselItem = createEle('div', carItemClass, [carouselImg, carouselCaption], []);
    
