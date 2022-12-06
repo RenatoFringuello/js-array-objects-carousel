@@ -17,31 +17,26 @@
     <!-- Custom css -->
     <link rel="stylesheet" href="./styles/style.css">
 </head>
-<body>
+<body class="d-flex flex-column vh-100">
 
-    <header>
+    <header class="pt-2">
         <div class="container-fluid">
-            <div class="row text-center p-5">
+            <div class="row text-center">
                 <div class="col-12">
-                    <h1>EightySello!</h1>
+                    <h1 class="m-0">EightySello!</h1>
                 </div>
             </div>
         </div>
     </header>
 
-
-    <main class="p-5 d-flex">
-        <div class="carousel-wrapper d-flex ">
-            <div class="carousel-image position-relative">
-                <!-- <div class="my_carousel-item">
-                    <img src="./img/01.webp" alt="First image">
-                </div> -->
-
+    <main class="d-flex flex-grow-1">
+        <div class="carousel-wrapper d-flex">
+            <div class="carousel-image position-relative" id="carousel">
                 <div class="buttons">
-                    <div class="button previous position-absolute">
+                    <div class="button previous position-absolute" id="prev">
                         <i class="fa-solid fa-egg font-color-white fa-xl"></i>
                     </div>
-                    <div class="button next position-absolute">
+                    <div class="button next position-absolute" id="next">
                         <i class="fa-solid fa-crow font-color-white fa-xl"></i>
                     </div>
                 </div>
