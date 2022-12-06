@@ -22,11 +22,6 @@
    return element;
 }
 
-function changeCarouselImg(target){
-   target.classList.toggle('active');
-   console.log(target);
-}
-
 //init
 const images = [
    {
@@ -58,8 +53,8 @@ const images = [
 const carousel = document.getElementById('carousel');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
-let currentImg = 0;
-const offset = 5;
+//the first at the index 4 beacuse prepend push him to the last position
+let currentImg = images.length - 1;
 
 // populate the carousel
 images.forEach((image, i) => {
@@ -78,7 +73,7 @@ images.forEach((image, i) => {
    //create caption
    const carouselItemTitle = createEle('h2','',[image.title]);
    const carouselItemDesc = createEle('p','',[image.text]);
-   const carouselCaption = createEle('div', 'caption position-relative bottom-0 text-white text-end m-3', [carouselItemTitle, carouselItemDesc]);
+   const carouselCaption = createEle('div', 'caption position-absolute bottom-0 text-white text-end p-3', [carouselItemTitle, carouselItemDesc]);
 
    const carouselItem = createEle('div', carItemClass, [carouselImg, carouselCaption], []);
    
@@ -88,20 +83,20 @@ images.forEach((image, i) => {
     * then use prepend so no matter what will added inside #carousel
     * we can still change the image using currentImg(index)
     */
-   carousel.append(carouselItem);
+   carousel.prepend(carouselItem);
 });
 
 prevBtn.addEventListener('click', () => {
    // remove old active
-   changeCarouselImg(carousel.childNodes[currentImg + offset]);
+   carousel.childNodes[currentImg].classList.toggle('active');
    currentImg = (currentImg > 0)? currentImg - 1 : images.length - 1;
    // add new active
-   changeCarouselImg(carousel.childNodes[currentImg + offset]);
+   carousel.childNodes[currentImg].classList.toggle('active');
 }, currentImg);
 nextBtn.addEventListener('click', () => {
    // remove old active
-   changeCarouselImg(carousel.childNodes[currentImg + offset]);
+   carousel.childNodes[currentImg].classList.toggle('active');
    currentImg = (currentImg < images.length - 1)? currentImg + 1 : 0;
    // add new active
-   changeCarouselImg(carousel.childNodes[currentImg + offset]);
+   carousel.childNodes[currentImg].classList.toggle('active');
 }, currentImg);
