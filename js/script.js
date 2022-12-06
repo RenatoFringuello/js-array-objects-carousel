@@ -24,6 +24,7 @@
 
 function changeCarouselImg(target){
    target.classList.toggle('active');
+   console.log(target);
 }
 
 //init
@@ -58,35 +59,49 @@ const carousel = document.getElementById('carousel');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 let currentImg = 0;
+const offset = 5;
 
 // populate the carousel
 images.forEach((image, i) => {
+   //set img attrs
    const carImgAttributes = [
       {type : 'src', value : `./${image.image}`},
       {type : 'alt', value : `./${image.title}`}
    ];
+   //create img
    const carouselImg = createEle('img', '', [], carImgAttributes);
+   //set the first to active
    let carItemClass = 'my_carousel-item active';
    if(i !== 0){
       carItemClass = 'my_carousel-item';
    }
-   const carouselItem = createEle('div', carItemClass, [carouselImg], []);
+   //create caption
+   const carouselItemTitle = createEle('h2','',[image.title]);
+   const carouselItemDesc = createEle('p','',[image.text]);
+   const carouselCaption = createEle('div', 'caption position-relative bottom-0 text-white text-end m-3', [carouselItemTitle, carouselItemDesc]);
+
+   const carouselItem = createEle('div', carItemClass, [carouselImg, carouselCaption], []);
    
-   // append to the carousel
+   /**
+    * prepend to the carousel 
+    * beacuse of the childnodes start to count from 0 
+    * then use prepend so no matter what will added inside #carousel
+    * we can still change the image using currentImg(index)
+    */
    carousel.append(carouselItem);
 });
 
 prevBtn.addEventListener('click', () => {
    // remove old active
-   changeCarouselImg(carousel.childNodes[currentImg + 3]);
-   currentImg = (currentImg > 0)? currentImg - 1 : 4;
+   changeCarouselImg(carousel.childNodes[currentImg + offset]);
+   currentImg = (currentImg > 0)? currentImg - 1 : images.length - 1;
    // add new active
-   changeCarouselImg(carousel.childNodes[currentImg + 3]);
-}, carousel);
+   changeCarouselImg(carousel.childNodes[currentImg + offset]);
+}, currentImg);
 nextBtn.addEventListener('click', () => {
    // remove old active
-   changeCarouselImg(carousel.childNodes[currentImg + 3]);
-   currentImg = (currentImg < 4)? currentImg + 1 : 0;
+   changeCarouselImg(carousel.childNodes[currentImg + offset]);
+   currentImg = (currentImg < images.length - 1)? currentImg + 1 : 0;
    // add new active
-   changeCarouselImg(carousel.childNodes[currentImg + 3]);
-}, carousel);
+   changeCarouselImg(carousel.childNodes[currentImg + offset]);
+}, currentImg);
