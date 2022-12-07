@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Eigthysello
+    </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+
+    <!-- Importing Bootstrap v5.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body class="d-flex flex-column overflow-hidden vh-100">
+    <header class="pt-2 position-relative">
+        <div class="container-fluid">
+            <div class="row text-center text-white">
+                <div class="col-12">
+                    <h1 class="m-0">EightySello!</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="d-flex flex-grow-1">
+        <div class="carousel-wrapper position-relative d-flex">
+            <img class="position-absolute" src="../img/01.webp" id="background-carousel">
+            <div class="carousel-image position-relative" id="carousel">
+                <!-- buttons -->
+                <div class="buttons">
+                    <div class="button previous position-absolute" id="prev">
+                        <i class="fa-solid fa-egg font-color-white fa-xl"></i>
+                    </div>
+                    <div class="button next position-absolute" id="next">
+                        <i class="fa-solid fa-crow font-color-white fa-xl"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-thumbnails d-flex flex-column justify-content-between position-relative" id="thumbnails-container">
+            </div>
+        </div>
+    </main>
+
+    <!-- Importiamo JS -->
+    <script type="text/javascript" src="./js/script.js "></script>
+</body>
+</html>
