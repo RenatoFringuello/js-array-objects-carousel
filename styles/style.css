@@ -34,17 +34,18 @@ div.next{
     border-radius: 50%;
     text-shadow: 0 0 20px #000;
     font-size: 1.6rem;
+    cursor: pointer;
 }
 
 div.previous{
     top:50%;
-    right: 1.5rem;
+    left: 1.5rem;
     transform: translateY(-50%);
 }
 
 div.next{
     top: 50%;
-    left: 1.5rem;
+    right: 1.5rem;
     transform: translateY(-50%);
 }
 

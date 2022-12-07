@@ -22,6 +22,22 @@
    return element;
 }
 
+/**
+ * toggle the class .active at the old target 
+ * and at the current target
+ * 
+ * @param {*} oldIndex the old index of the image in carousel
+ * @param {*} currentImgIndex the current index of the image in carousel
+ */
+ function changeImage(oldIndex, currentImgIndex){
+    //get all carousel items
+   const carouselItems = document.querySelectorAll('.my_carousel-item');
+   // remove old active
+   carouselItems[oldIndex].classList.toggle('active');
+   // add new active
+   carouselItems[currentImgIndex].classList.toggle('active');
+}
+
 //init
 const images = [
    {
@@ -51,52 +67,45 @@ const images = [
    }
 ];
 const carousel = document.getElementById('carousel');
+const thumbnailsContainer = document.getElementById('thumbnails-container');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 //the first at the index 4 beacuse prepend push him to the last position
-let currentImg = images.length - 1;
+let currentImg = 0;
 
 // populate the carousel
 images.forEach((image, i) => {
    //set img attrs
    const carImgAttributes = [
       {type : 'src', value : `./${image.image}`},
-      {type : 'alt', value : `./${image.title}`}
+      {type : 'alt', value : `${image.title}`}
    ];
    //create img
    const carouselImg = createEle('img', '', [], carImgAttributes);
-   //set the first to active
+      //set the first to active
    let carItemClass = 'my_carousel-item active';
    if(i !== 0){
       carItemClass = 'my_carousel-item';
    }
+
    //create caption
    const carouselItemTitle = createEle('h2','',[image.title]);
    const carouselItemDesc = createEle('p','',[image.text]);
    const carouselCaption = createEle('div', 'caption position-absolute w-100 bottom-0 text-white text-end p-3', [carouselItemTitle, carouselItemDesc]);
 
    const carouselItem = createEle('div', carItemClass, [carouselImg, carouselCaption], []);
-   
-   /**
-    * prepend to the carousel 
-    * beacuse of the childnodes start to count from 0 
-    * then use prepend so no matter what will added inside #carousel
-    * we can still change the image using currentImg(index)
-    */
-   carousel.prepend(carouselItem);
+
+   carousel.append(carouselItem);
 });
 
 prevBtn.addEventListener('click', () => {
-   // remove old active
-   carousel.childNodes[currentImg].classList.toggle('active');
+   let oldIndexImg = currentImg;
    currentImg = (currentImg > 0)? currentImg - 1 : images.length - 1;
-   // add new active
-   carousel.childNodes[currentImg].classList.toggle('active');
-}, currentImg);
+   changeImage(oldIndexImg, currentImg);  
+});
+
 nextBtn.addEventListener('click', () => {
-   // remove old active
-   carousel.childNodes[currentImg].classList.toggle('active');
+   let oldIndexImg = currentImg;
    currentImg = (currentImg < images.length - 1)? currentImg + 1 : 0;
-   // add new active
-   carousel.childNodes[currentImg].classList.toggle('active');
-}, currentImg);
+   changeImage(oldIndexImg, currentImg);  
+});
